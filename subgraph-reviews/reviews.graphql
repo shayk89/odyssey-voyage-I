@@ -1,7 +1,7 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.7",
         import: ["@key"]) 
-        
+
 type Query {
   "The three latest reviews submitted for FlyBy's locations"
   latestReviews: [Review!]!
@@ -15,6 +15,9 @@ type Review {
   rating: Int
 }
 
+type Location @key(fields: "id", resolvable:false) {
+  id: ID!
+}
 type Mutation {
   submitReview(locationReview: LocationReviewInput): SubmitReviewResponse
 }
